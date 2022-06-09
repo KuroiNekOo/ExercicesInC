@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_remove_whitespaces.c                            :+:      :+:    :+:   */
+/*   ft_remove_whitespaces_main.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgatopreto <maximegomes.dinis@outlook.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/09 11:25:13 by lgatopreto        #+#    #+#             */
-/*   Updated: 2022/06/09 11:25:18 by lgatopreto       ###   ########.fr       */
+/*   Created: 2022/06/10 00:21:18 by lgatopreto        #+#    #+#             */
+/*   Updated: 2022/06/10 00:26:16 by lgatopreto       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <stdlib.h> // malloc
+#include <stdlib.h>
 #include <unistd.h>
 
 #define SPACE 32
-#define NUL 0
+#define TAB 9
+#define NEWLINE 10
 
 /*
 void	ft_putchar(char c)
@@ -24,7 +25,7 @@ void	ft_putchar(char c)
 }
 */
 
-size_t	get_bin_size(const char *str)
+size_t	ft_strlen(const char *str)
 {
 	size_t	size;
 
@@ -33,13 +34,16 @@ size_t	get_bin_size(const char *str)
 	size = 0;
 	while (*str != '\0')
 	{
+		if (*str == SPACE || *str == TAB || *str == NEWLINE)
+			--size;
 		++size;
 		++str;
 	}
+	++size;
 	return (size);
 }
 
-void	add_tab(char *tab, size_t size, const char *str)
+void	copystr(char *tab, size_t size, const char *str)
 {
 	size_t	i;
 
@@ -47,52 +51,34 @@ void	add_tab(char *tab, size_t size, const char *str)
 	while (i < size)
 	{
 		tab[i] = *str;
-		printf("%c", tab[i]);
 		++i;
+		if (*str == SPACE || *str == TAB || *str == NEWLINE)
+			--i;
 		++str;
 	}
-	printf("\n");
 }
 
-char * ft_remove_whitespaces(const char *str)
+char	*ft_remove_whitespaces(const char *str)
 {
 	size_t	n;
 	size_t	i;
+	char	*tab;
 
 	i = 0;
-	n = get_bin_size(str);
-	printf("size: %zu\n", n);
-	char *tab = malloc(n * sizeof(char));
-	add_tab(tab, n, str);
-
+	n = ft_strlen(str);
+	tab = malloc(n * sizeof(char));
+	copystr(tab, n, str);
+	i = 0;
 	while (tab[i] != '\0')
 	{
-		if (tab[i] == SPACE)
-		{
-			tab[i] = NUL;
-		}
 		printf("%c", tab[i]);
 		++i;
 	}
-	printf("\n");
-	printf("size: %zu\n", n);
-	printf("i: %zu\n", i);
-	printf("Ensuite...\n");
-
-	i = 0;
-	while (i < n)
-	{
-		printf("%c", tab[i]);
-		++i;
-	}
-	printf("\n");
-	printf("i: %zu\n", i);
-	
 	return (tab);
 }
 
-int main(void)
+int	main(void)
 {
-	ft_remove_whitespaces("Hello World !");
+	ft_remove_whitespaces("Hello World\nMaxime\t!");
 	return (EXIT_SUCCESS);
 }
