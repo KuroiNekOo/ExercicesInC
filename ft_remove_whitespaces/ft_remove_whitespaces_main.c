@@ -6,7 +6,7 @@
 /*   By: lgatopreto <maximegomes.dinis@outlook.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 00:21:18 by lgatopreto        #+#    #+#             */
-/*   Updated: 2022/06/10 13:56:28 by lgatopreto       ###   ########.fr       */
+/*   Updated: 2022/06/11 00:26:11 by lgatopreto       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,16 @@ size_t	ft_strlen(const char *str)
 {
 	size_t	size;
 
+	size = 0;
 	if (*str == '\0')
 		return (1);
-	size = 0;
-	while (*str != '\0')
+	while (str[size] != '\0')
 	{
 		if (*str == SPACE || *str == TAB || *str == NEWLINE)
 			--size;
 		++size;
-		++str;
 	}
-	++size;
-	return (size);
+	return (size + 1);
 }
 
 void	copystr(char *tab, size_t size, const char *str)
