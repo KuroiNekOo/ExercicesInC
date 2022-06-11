@@ -6,7 +6,7 @@
 /*   By: lgatopreto <maximegomes.dinis@outlook.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 00:21:18 by lgatopreto        #+#    #+#             */
-/*   Updated: 2022/06/11 12:21:47 by lgatopreto       ###   ########.fr       */
+/*   Updated: 2022/06/11 14:58:47 by lgatopreto       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,14 @@ size_t	ft_strlen(const char *str)
 	return (1 + ft_strlen(str + 1));
 }
 
-void	copystr(char *tab, size_t size, const char *str)
+char	*copystr(char *tab, const char *str)
 {
-	size_t	i;
-
-	i = 0;
-	while (i < size)
-	{
-		tab[i] = *str;
-		++i;
-		if (*str == SPACE || *str == TAB || *str == NEWLINE)
-			--i;
+	while (*str == SPACE || *str == TAB || *str == NEWLINE)
 		++str;
-	}
+	if (*str == '\0')
+		return (tab);
+	*tab = *str;
+	return (copystr((++tab), (++str)));
 }
 
 char	*ft_remove_whitespaces(const char *str)
@@ -46,6 +41,6 @@ char	*ft_remove_whitespaces(const char *str)
 	char	*tab;
 
 	tab = malloc(ft_strlen(str) * sizeof(char));
-	copystr(tab, ft_strlen(str), str);
+	copystr(tab, str);
 	return (tab);
 }
