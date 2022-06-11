@@ -6,7 +6,7 @@
 /*   By: lgatopreto <maximegomes.dinis@outlook.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 00:21:18 by lgatopreto        #+#    #+#             */
-/*   Updated: 2022/06/11 00:26:11 by lgatopreto       ###   ########.fr       */
+/*   Updated: 2022/06/11 11:33:28 by lgatopreto       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,11 @@ void	ft_putchar(char c)
 
 size_t	ft_strlen(const char *str)
 {
-	size_t	size;
-
-	size = 0;
+	if (*str == SPACE || *str == TAB || *str == NEWLINE)
+		return (ft_strlen(str + 1));
 	if (*str == '\0')
 		return (1);
-	while (str[size] != '\0')
-	{
-		if (*str == SPACE || *str == TAB || *str == NEWLINE)
-			--size;
-		++size;
-	}
-	return (size + 1);
+	return (1 + ft_strlen(str + 1));
 }
 
 void	copystr(char *tab, size_t size, const char *str)
@@ -47,9 +40,9 @@ void	copystr(char *tab, size_t size, const char *str)
 	while (i < size)
 	{
 		tab[i] = *str;
-		++i;
 		if (*str == SPACE || *str == TAB || *str == NEWLINE)
 			--i;
+		++i;
 		++str;
 	}
 }
@@ -60,6 +53,7 @@ char	*ft_remove_whitespaces(const char *str)
 	char	*tab;
 
 	n = ft_strlen(str);
+	printf("size: %zu\n", n);
 	tab = malloc(n * sizeof(char));
 	copystr(tab, n, str);
 	return (tab);
