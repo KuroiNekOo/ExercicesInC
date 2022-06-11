@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_remove_whitespaces_main.c                       :+:      :+:    :+:   */
+/*   ft_strdup_main.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgatopreto <maximegomes.dinis@outlook.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/10 00:21:18 by lgatopreto        #+#    #+#             */
-/*   Updated: 2022/06/11 15:17:06 by lgatopreto       ###   ########.fr       */
+/*   Created: 2022/06/11 16:07:15 by lgatopreto        #+#    #+#             */
+/*   Updated: 2022/06/11 16:48:43 by lgatopreto       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,33 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#define SPACE 32
-#define TAB 9
-#define NEWLINE 10
-
 void	ft_putchar(char c)
 {
 	write(STDOUT_FILENO, &c, sizeof(c));
 }
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen(const char *string)
 {
-	if (*str == SPACE || *str == TAB || *str == NEWLINE)
-		return (ft_strlen(str + 1));
-	if (*str == '\0')
+	if (*string == '\0')
 		return (1);
-	return (1 + ft_strlen(str + 1));
+	return (1 + ft_strlen(++string));
 }
 
-char	*copystr(char *tab, const char *str)
+char	*copystr(char *str, const char *string)
 {
-	while (*str == SPACE || *str == TAB || *str == NEWLINE)
-		++str;
-	if (*str == '\0')
-		return (tab);
-	*tab = *str;
-	return (copystr((++tab), (++str)));
+	if (*string == '\0')
+		return (str);
+	*str = *string;
+	return (copystr((++str), (++string)));
 }
 
-char	*ft_remove_whitespaces(const char *str)
+char	*ft_strdup(const char *string)
 {
-	char	*tab;
+	char	*dup;
 
-	tab = malloc(ft_strlen(str) * sizeof(char));
-	copystr(tab, str);
-	return (tab);
+	dup = malloc(ft_strlen(string) * sizeof(char));
+	copystr(dup, string);
+	return (dup);
 }
 
 int	main(void)
@@ -57,7 +49,7 @@ int	main(void)
 	char	*str;
 
 	i = 0;
-	str = ft_remove_whitespaces("Hello World\nMaxime\t!");
+	str = ft_strdup("Hello World Maxime !");
 	while (str[i] != '\0')
 	{
 		ft_putchar(str[i]);
