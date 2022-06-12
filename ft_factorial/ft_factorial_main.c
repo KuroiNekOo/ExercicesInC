@@ -6,7 +6,7 @@
 /*   By: lgatopreto <maximegomes.dinis@outlook.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 19:00:26 by lgatopreto        #+#    #+#             */
-/*   Updated: 2022/06/12 18:48:26 by lgatopreto       ###   ########.fr       */
+/*   Updated: 2022/06/12 19:01:30 by lgatopreto       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ unsigned long	ft_factorial(unsigned long nb)
 
 int	main(int ac, char *av[])
 {
-	if (ac > 1)
+	if (ac > 1 && atoi(av[1]) >= 0)
 		printf("%lu\n", ft_factorial(atoi(av[1])));
 	return (EXIT_SUCCESS);
 }
