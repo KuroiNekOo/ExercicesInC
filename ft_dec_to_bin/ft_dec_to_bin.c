@@ -6,7 +6,7 @@
 /*   By: lgatopreto <maximegomes.dinis@outlook.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 23:50:38 by lgatopreto        #+#    #+#             */
-/*   Updated: 2022/06/13 19:15:38 by lgatopreto       ###   ########.fr       */
+/*   Updated: 2022/06/13 19:17:05 by lgatopreto       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ unsigned long	ft_atoi(char *nb)
 
 	result = 0;
 	while (nb != NULL && (*nb == SPACE || 
-			(*nb >= FIRST_WHITESPACE && *nb <= LAST_WHITESPACE)))
+		(*nb >= FIRST_WHITESPACE && *nb <= LAST_WHITESPACE)))
 		++nb;
 	if (*nb == '+')
 		++nb;
