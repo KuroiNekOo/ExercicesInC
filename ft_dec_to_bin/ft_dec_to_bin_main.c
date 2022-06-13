@@ -6,7 +6,7 @@
 /*   By: lgatopreto <maximegomes.dinis@outlook.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 23:50:38 by lgatopreto        #+#    #+#             */
-/*   Updated: 2022/06/11 22:11:24 by lgatopreto       ###   ########.fr       */
+/*   Updated: 2022/06/13 19:12:50 by lgatopreto       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 
 #define ZERO '0'
 #define NINE '9'
+#define FIRST_WHITESPACE 9
+#define LAST_WHITESPACE 13
+#define SPACE ' '
 #define ASCII_OFFSET 48
 
 unsigned long	ft_atoi(char *nb)
@@ -23,10 +26,13 @@ unsigned long	ft_atoi(char *nb)
 	unsigned long	result;
 
 	result = 0;
-	if (*nb == '\0' || *nb == '-')
-		return (0);
+	while (nb != NULL && (*nb == SPACE || 
+			(*nb >= FIRST_WHITESPACE && *nb <= LAST_WHITESPACE)))
+		++nb;
 	if (*nb == '+')
 		++nb;
+	if (*nb == '\0' || *nb == '-')
+		return (0);
 	while (*nb >= ZERO && *nb <= NINE)
 	{
 		result = result * 10 + (*nb - ASCII_OFFSET);
