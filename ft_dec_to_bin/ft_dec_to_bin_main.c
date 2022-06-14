@@ -6,7 +6,7 @@
 /*   By: lgatopreto <maximegomes.dinis@outlook.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 23:50:38 by lgatopreto        #+#    #+#             */
-/*   Updated: 2022/06/13 19:17:12 by lgatopreto       ###   ########.fr       */
+/*   Updated: 2022/06/14 10:52:43 by lgatopreto       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,7 @@ unsigned long	ft_atoi(char *nb)
 size_t	get_bin_size(unsigned long result)
 {
 	if (result != 0)
-	{
-		result /= 2;
-		return (1 + get_bin_size(result));
-	}
+		return (1 + get_bin_size(result/=2));
 	return (0);
 }
 
