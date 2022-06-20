@@ -6,7 +6,7 @@
 /*   By: lgatopreto <maximegomes.dinis@outlook.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/11 16:07:15 by lgatopreto        #+#    #+#             */
-/*   Updated: 2022/06/20 10:59:02 by lgatopreto       ###   ########.fr       */
+/*   Updated: 2022/06/20 11:05:28 by lgatopreto       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*initializ(char	*string)
 		if (*string < 97 || *string > 122)
 			initializ(++string);
 	}
-	return(string);
+	return (string);
 }
 
 char	*ft_str_to_upper(const char *str)
