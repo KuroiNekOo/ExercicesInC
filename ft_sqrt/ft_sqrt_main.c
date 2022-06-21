@@ -6,7 +6,7 @@
 /*   By: lgatopreto <maximegomes.dinis@outlook.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:06:30 by lgatopreto        #+#    #+#             */
-/*   Updated: 2022/06/21 13:22:53 by lgatopreto       ###   ########.fr       */
+/*   Updated: 2022/06/21 14:41:34 by lgatopreto       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,16 @@
 
 int	ft_sqrt(int nb)
 {
-	int	i;
+	int	sqrt;
 
-	i = 0;
-	if (nb <= 0)
-		return (0);
-	while (i*i != nb)
+	sqrt = 0;
+	while (sqrt * sqrt <= nb && nb > 0)
 	{
-		++i;
-		if (i > nb)
-			return (0);
+		if (sqrt * sqrt == nb)
+			return (sqrt);
+		++sqrt;
 	}
-	return (i);
+	return (0);
 }
 
 int main(int ac, char **av)
